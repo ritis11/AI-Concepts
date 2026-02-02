@@ -53,6 +53,40 @@ Why does the DB store "values" like `1.2` inside the sparse vector?
 The BM25 formula is split into two parts to optimize speed:
 
 $$Score = \text{Global Importance (IDF)} \times \text{Local Importance (TF + Norm)}$$
+Here is the updated section focusing specifically on the breakdown of the BM25 formula. You can append this to your `.md` file to have a complete mathematical reference.
+
+---
+
+### Deep Dive: The BM25 Formula Breakdown
+
+BM25 (Best Matching 25) is the industry standard for keyword relevance. It improves upon older methods (like TF-IDF) by preventing "keyword stuffing" from unfairly boosting a document's score.
+
+### The Equation
+$$Score(D, Q) = \sum_{i=1}^{n} \text{IDF}(q_i) \cdot \frac{f(q_i, D) \cdot (k_1 + 1)}{f(q_i, D) + k_1 \cdot (1 - b + b \cdot \frac{|D|}{\text{avgdl}})}$$
+### Component Breakdown
+* **$f(q_i, D)$ (Term Frequency):** How many times the word appears in the doc.
+* **$|D|$ / $avgdl$ (Length Ratio):** Compares the doc length to the average length.
+* **$k_1$ (Saturation):** Prevents "keyword stuffing" from inflating scores. Controls "Term Frequency Saturation." Usually set between **1.2 and 2.0**. It ensures that seeing a word 100 times isn't 100x better than seeing it once. 
+* **$b$ (Penalty):** Penalizes long, rambling documents to favor concise matches.
+* **$IDF$ (Rarity):** Boosts rare words (e.g., "Quantum") and ignores common ones (e.g., "The"). Inverse Document Frequency | Measures how rare the word is. Rare words (like "Quantum") get high scores; common words (like "The") get near-zero scores. |
+
+### Why it’s better than TF-IDF
+
+1. **Term Frequency Saturation:** In TF-IDF, the score keeps climbing as you add more of the same word. In BM25, the score "plateaus" (saturates) quickly. Once you've seen a keyword 3 or 4 times, seeing it a 5th time barely adds any more points.
+2. **Document Length Normalization:** BM25 understands that a 50-page document is more likely to contain a keyword by accident than a 1-sentence document. It "levels the playing field" so short, concise matches rank higher than long, rambling matches.
+
+---
+
+### Comparison of Retrieval Logic
+
+| Feature | BM25 (Keyword) | Dense Vector (Semantic) |
+| --- | --- | --- |
+| **Strengths** | Exact matches, IDs, rare technical terms. | Synonyms, "vibes," natural language questions. |
+| **Weaknesses** | Fails if the user uses a synonym (e.g., "sofa" vs "couch"). | Can "hallucinate" relevance for unrelated terms. |
+| **Best For** | "Find me Part #882-X" | "How do I fix a leaky faucet?" |
+
+---
+
 
 ### What is Stored (Static)
 The DB pre-calculates the **Local Importance** when the document is indexed. This includes:
