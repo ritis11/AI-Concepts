@@ -4,6 +4,8 @@ Think of it this way: **Partitioning** is about organizing your closet so things
 
 ---
 
+![Data Shards](https://chat2db.ai/resources/_next/image?url=%2Fresources%2F_next%2Fstatic%2Fmedia%2F1.75e25914.png&w=3840&q=75)
+
 ## 1. Partitioning (The Local Split)
 
 Partitioning is the process of dividing a large dataset into smaller, more manageable pieces within a **single database instance**. The goal is usually to improve performance and manageability (e.g., deleting old logs by dropping a whole partition).
@@ -40,5 +42,8 @@ Sharding is a specific type of horizontal partitioning where the data is spread 
 * **Use Sharding** if your dataset is so massive that it physically cannot fit on one server, or if you need to handle a massive volume of concurrent writes that a single machine's CPU can't manage.
 
 
-For more details : https://www.youtube.com/watch?v=wXvljefXyEo
+For more details : 
+https://www.youtube.com/watch?v=wXvljefXyEo
+https://chat2db.ai/resources/blog/database-sharding
+
 
