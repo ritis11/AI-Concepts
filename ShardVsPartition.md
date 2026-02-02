@@ -39,4 +39,6 @@ Sharding is a specific type of horizontal partitioning where the data is spread 
 * **Use Partitioning** if your database is getting slow to query, but your single server still has plenty of disk space and processing power.
 * **Use Sharding** if your dataset is so massive that it physically cannot fit on one server, or if you need to handle a massive volume of concurrent writes that a single machine's CPU can't manage.
 
-Would you like to explore specific sharding strategies, such as **Key-Based** or **Directory-Based** sharding?
+
+For more details : https://www.youtube.com/watch?v=wXvljefXyEo
+
