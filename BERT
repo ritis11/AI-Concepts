@@ -1,0 +1,9 @@
+Ref : https://www.youtube.com/watch?v=GDN649X_acE
+BERT is an encoder-only sentence embedding transformer-based model. This has three main components, which exist in the part of encoder-only models. 
+Each word of the sentence is converted into an embedding first. 
+The embeddings are then appended with positional encoding that contains the information of the position of each word. 
+After that, it passes through a self-attention layer, which creates a different embedding encoding the information of its neighbouring words as context.
+And hence, when a sentence is converted into an embedding using BERT, it contains context aware embeddings for the whole sentence. 
+This can be used in various applications like RAG or sentence cluster or sentiment analysis classification. 
+Note the embedding model is often trained on a separate task altogether. For example, embedding training might happen on masked sentences or a next word prediction, 
+but instead of using the whole network, you might just take the layer where the embedding is created and use that for embedding generation rather than the complete network. 
