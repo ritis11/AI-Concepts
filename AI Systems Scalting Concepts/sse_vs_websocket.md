@@ -23,8 +23,15 @@
   the user cannot send another GET request in between. The process has to complete. All the chunks have to be sent back to the user client before any other GET request is sent.
 -  To improve this design, we either use web sockets or we expose another endpoint, such as interrupt, using which the client can stop the response.
 - Using the interrupt, we just stop the streaming response from a backend service
-- 
+  
 
 # References : 
 - Youtube : https://www.youtube.com/watch?v=RgrHR7xO34Q
-- 
+  
+
+TO DO:
+Solving the Proxy Issues: Learn about "Keep-Alives," disabling buffering, and how headers like X-Accel-Buffering work.
+
+SSE vs. WebSockets: Explore why WebSockets are often considered even "trickier" for L7 load balancers than SSE.
+
+The OSI Model: A quick look at why "Layer 4" load balancing handles SSE much more easily than "Layer 7."
